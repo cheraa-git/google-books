@@ -1,0 +1,67 @@
+.select-wrapper
+  background: #fff
+  display: flex
+  border-radius: 2px
+  border-bottom: 1px solid white
+  transition: all .3s
+  cursor: pointer
+  position: relative
+  width: 100%
+
+  &:hover
+    background: #f1f1f1
+
+  i
+    padding-top: 3px
+
+.select-content
+  position: relative
+  display: flex
+  width: 100%
+  padding: 5px 10px
+
+  input
+    opacity: 0
+    cursor: pointer
+    width: 100%
+
+.select-value
+  position: absolute
+  width: 90%
+  align-self: center
+  margin: 0
+  overflow-x: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+
+.dropdown-menu
+  height: 200px
+
+.select-controls
+  display: flex
+  i
+    margin-right: 7px
+    text-align: center
+    align-self: center
+    transition: all .2s
+
+
+.close-btn
+  font-size: 14px
+  height: 27px
+  width: 28px
+  color: #ff3b3b
+
+
+
+  &:hover
+    background-color: #ffe9e9
+    border-radius: 50%
+
+  &:active
+    background-color: #ffcdcd
+    opacity: .7
+
+.active
+  box-shadow: 0 0 8px 0 rgb(189, 228, 255)
+

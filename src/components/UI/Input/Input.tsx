@@ -18,7 +18,6 @@ export const Input: FC<InputProps> = ({ className, endAdornment, ...props }) => 
       />
       {endAdornment && <div className="action-btn">{endAdornment}</div>}
 
-
     </div>
   )
 }

@@ -30,7 +30,8 @@ export const Select: FC<SelectProps> = ({ options, value, setValue, placeholder,
       <div className="w-100" data-bs-toggle="dropdown" data-bs-auto-close="true" aria-expanded="false">
         <div className="select-content" onClick={() => setIsFocused(prev => !prev)}>
           <input onBlur={() => setIsFocused(false)}/>
-          <p className={`select-value ${!value && 'text-muted opacity-50'}`}>{value?.label || value?.value || placeholder}</p>
+          <p
+            className={`select-value ${!value && 'text-muted opacity-50'}`}>{value?.label || value?.value || placeholder}</p>
 
         </div>
         <div className="dropdown">

@@ -8,7 +8,7 @@ export const getBooksQuery = async (data: GetBooksParams): Promise<{ books: Book
   const books: Book[] = response.data.items.map((item: any) => ({
     id: item.id,
     title: item.volumeInfo.title,
-    authors: item.volumeInfo,
+    authors: item.volumeInfo.authors,
     categories: item.volumeInfo.categories,
     description: item.volumeInfo.description,
     language: item.volumeInfo.language,

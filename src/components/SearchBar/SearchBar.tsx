@@ -22,7 +22,7 @@ export const SearchBar: FC = () => {
   const orderOptions = [{ value: 'relevance' }, { value: 'newest' }]
 
   const handleSearch = (event?: KeyboardEvent<HTMLInputElement>) => {
-    console.log(event?.key)
+    if (!searchInput) return
     if ((event && event.key === 'Enter') || !event) {
       dispatch(getBooks(searchInput, category.value, orderBy.value))
     }

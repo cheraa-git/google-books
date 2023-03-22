@@ -5,8 +5,8 @@ type Option = { value: string, label?: string }
 
 interface SelectProps {
   options: Option[]
-  value: Option | null
-  setValue: (value: Option | null) => void
+  value: Option
+  setValue: (value: Option) => void
   placeholder?: string
   className?: string
 }
@@ -19,10 +19,10 @@ export const Select: FC<SelectProps> = ({ options, value, setValue, placeholder,
     setIsFocused(false)
   }
 
-  const handleClearSelect = () => {
-    setValue(null)
-    setIsFocused(false)
-  }
+  // const handleClearSelect = () => {
+  //   setValue(null)
+  //   setIsFocused(false)
+  // }
 
 
   return (
@@ -49,7 +49,7 @@ export const Select: FC<SelectProps> = ({ options, value, setValue, placeholder,
       </div>
       <div className="select-controls">
         {isFocused ? <i className="bi bi-chevron-up"/> : <i className="bi bi-chevron-down"/>}
-        {value && <i className="bi bi-x-lg close-btn" onClick={handleClearSelect}/>}
+        {/*{value && <i className="bi bi-x-lg close-btn" onClick={handleClearSelect}/>}*/}
       </div>
     </div>
 

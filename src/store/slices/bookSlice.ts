@@ -12,6 +12,7 @@ export interface BookState {
   orderOptions: { value: string }[]
   query: string,
   hasMore: boolean
+  errorMessage: string
 }
 
 const initialState: BookState = {
@@ -31,7 +32,8 @@ const initialState: BookState = {
   orderBy: 'relevance',
   orderOptions: [{ value: 'relevance' }, { value: 'newest' }],
   query: '',
-  hasMore: true
+  hasMore: true,
+  errorMessage: ''
 }
 
 export const bookSlice = createSlice({
@@ -67,6 +69,9 @@ export const bookSlice = createSlice({
     },
     setBook: (state, { payload }: PayloadAction<Book>) => {
       state.book = payload
+    },
+    setErrorMessage: (state, { payload }: PayloadAction<string>) => {
+      state.errorMessage = payload
     }
   }
 })
@@ -80,7 +85,8 @@ export const {
   setQuery,
   setHasMore,
   setTotalItems,
-  setBook
+  setBook,
+  setErrorMessage
 } = bookSlice.actions
 
 export const BookReducer = bookSlice.reducer

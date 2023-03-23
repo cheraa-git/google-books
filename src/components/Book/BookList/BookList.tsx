@@ -17,12 +17,13 @@ export const BookList: FC = () => {
     }, [] as Book[])
   }
 
+  const filteredBooks = filterDuplicateBooks(books)
+
   return (
     <div>
-      {totalItems && <p className="total-items">Found {totalItems} results</p>}
-      {filterDuplicateBooks(books).length}
+      <p className="total-items">{totalItems ? `Found ${totalItems} results` : 'Books not found'}</p>
       <div className="books-wrap">
-        {filterDuplicateBooks(books).map(book => <BookCard key={book.id} book={book}/>)}
+        {filteredBooks.map(book => <BookCard key={book.id} book={book}/>)}
       </div>
 
       {loading && <div className="loader-wrap"><Loader/></div>}

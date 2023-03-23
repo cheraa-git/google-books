@@ -1,0 +1,21 @@
+.error-message
+  position: fixed
+  bottom: 5vh
+  left: 10vh
+  z-index: 100
+  padding: 10px 20px
+  background: #ffdfdf
+  border: 1px solid #eee
+  border-radius: 10px
+  color: #6b6b6b
+  animation: slide-open 0.5s
+
+  p
+    margin: 0
+
+@keyframes slide-open
+  0%
+    transform: translateX(-300px)
+
+  100%
+    transform: translateX(0px)

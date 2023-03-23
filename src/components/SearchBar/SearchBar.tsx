@@ -11,7 +11,7 @@ export const SearchBar: FC = () => {
   const dispatch = useAppDispatch()
   const location = useLocation()
   const navigate = useNavigate()
-  const { category, orderBy, orderOptions, categories, books, query } = useAppSelector((state: RootState) => state.book)
+  const { category, orderBy, orderOptions, categories, query } = useAppSelector((state: RootState) => state.book)
 
   const handleSearch = (event?: KeyboardEvent<HTMLInputElement>) => {
     if (!query) return
@@ -38,7 +38,7 @@ export const SearchBar: FC = () => {
   return (
     <div className="search-bar">
       <div className="content">
-        <h1 className="title">Search for books {books.length}</h1>
+        <h1 className="title">Search for books</h1>
         <Input className="w-100"
                endAdornment={<i className="bi bi-search" onClick={() => handleSearch()}/>}
                placeholder="Search..."

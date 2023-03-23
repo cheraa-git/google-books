@@ -2,8 +2,8 @@ import { Book } from '../../types/bookTypes'
 
 
 export const dtoBooks = (data: { items: { volumeInfo: any, id: string }[], totalItems: number }) => {
-  if (data.totalItems === 0 || !data.items[0].volumeInfo) return { books: [], totalItems: 0 }
-  const books = data.items.map(item => ({
+  if (data.totalItems === 0 || !data.items[0].volumeInfo) return []
+  return data.items.map(item => ({
       id: item.id,
       title: item.volumeInfo.title,
       authors: item.volumeInfo.authors,
@@ -15,7 +15,6 @@ export const dtoBooks = (data: { items: { volumeInfo: any, id: string }[], total
       publishedDate: item.volumeInfo.publishedDate
     }
   ) as Book)
-  return { books, totalItems: data.totalItems }
 }
 
 export const dtoBook = (item: { volumeInfo: any, id: string }): Book => {

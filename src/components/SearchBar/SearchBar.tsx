@@ -5,9 +5,12 @@ import { Select } from '../UI/Select/Select'
 import { RootState, useAppDispatch, useAppSelector } from '../../store/store'
 import { getBooks } from '../../store/actions/bookActions'
 import { clearBooks, setCategory, setOrderBy, setQuery } from '../../store/slices/bookSlice'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 export const SearchBar: FC = () => {
   const dispatch = useAppDispatch()
+  const location = useLocation()
+  const navigate = useNavigate()
   const { category, orderBy, orderOptions, categories, books, query } = useAppSelector((state: RootState) => state.book)
 
   const handleSearch = (event?: KeyboardEvent<HTMLInputElement>) => {
@@ -15,6 +18,8 @@ export const SearchBar: FC = () => {
     if ((event && event.key === 'Enter') || !event) {
       dispatch(clearBooks())
       dispatch(getBooks())
+      event?.currentTarget.blur()
+      if (location.pathname !== '/') navigate('/')
     }
   }
 
@@ -22,6 +27,10 @@ export const SearchBar: FC = () => {
     if (query) {
       dispatch(clearBooks())
       dispatch(getBooks())
+      if (location.pathname !== '/') {
+        console.log('navigate')
+        navigate('/')
+      }
     }
   }, [category, orderBy, dispatch])
 

@@ -1,10 +1,15 @@
 import { FC } from 'react'
 import { Book } from '../../../types/bookTypes'
 import './BookCard.sass'
+import { useNavigate } from 'react-router-dom'
 
 export const BookCard: FC<{ book: Book }> = ({ book }) => {
+  const navigate = useNavigate()
   return (
-    <div className="book-card">
+    <div className="book-card" onClick={() => {
+      console.log(`/${book.id}`)
+      navigate(`/${book.id}`)
+    }}>
       <div>
         {book.imageUrl && <img className="card-img" src={book.imageUrl} alt="book-preview"/>}
       </div>

@@ -1,0 +1,24 @@
+.book-page
+  display: grid
+  grid-template-columns: 1fr 2fr
+
+  .page-preview
+    background: #eee
+    padding: 50px 0
+    display: flex
+    justify-content: center
+
+    img
+      width: 280px
+      box-shadow: 14px 15px 17px -6px rgba(0, 0, 0, 0.43)
+      margin: auto 20px
+
+  .page-content
+    padding: 40px
+
+@media (max-width: 900px)
+  .book-page
+    grid-template-columns: 1fr
+
+    .page-content
+      padding: 20px

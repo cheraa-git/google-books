@@ -37,6 +37,7 @@ export const SearchBar: FC = () => {
 
   return (
     <div className="search-bar">
+      {location.pathname !== '/' && <i className="bi bi-chevron-left back-btn" onClick={() => navigate('/')}/>}
       <div className="content">
         <h1 className="title">Search for books</h1>
         <Input className="w-100"

@@ -21,7 +21,7 @@ export const BookPage: FC = () => {
         {book?.imageUrl && <img src={book?.imageUrl} alt="preview"/>}
       </div>
       <div className="page-content">
-        <div className="d-flex justify-content-between">
+        <div className="d-flex justify-content-between flex-wrap">
           <div className="opacity-50 mb-4">
             {book?.categories?.map((category, i) => <p key={i} className="mb-0">{category}</p>)}
           </div>

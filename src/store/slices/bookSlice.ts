@@ -4,6 +4,7 @@ import { Book } from '../../types/bookTypes'
 export interface BookState {
   loading: boolean
   books: Book[]
+  book?: Book
   totalItems: number | null
   category: string
   categories: { value: string }[]
@@ -48,6 +49,7 @@ export const bookSlice = createSlice({
     },
     clearBooks: (state) => {
       state.books = []
+      state.book = undefined
       state.totalItems = null
       state.hasMore = true
     },
@@ -62,6 +64,9 @@ export const bookSlice = createSlice({
     },
     setHasMore: (state, { payload }: PayloadAction<boolean>) => {
       state.hasMore = payload
+    },
+    setBook: (state, { payload }: PayloadAction<Book>) => {
+      state.book = payload
     }
   }
 })
@@ -74,7 +79,8 @@ export const {
   clearBooks,
   setQuery,
   setHasMore,
-  setTotalItems
+  setTotalItems,
+  setBook
 } = bookSlice.actions
 
 export const BookReducer = bookSlice.reducer

@@ -1,6 +1,6 @@
 export interface Book {
-  id: string
-  title: string
+  id?: string
+  title?: string
   publishedDate?: string
   imageUrl?: string
   pageCount?: number
@@ -8,4 +8,5 @@ export interface Book {
   description?: string
   categories?: string[]
   authors?: string[]
+  subtitle?: string
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { SearchBar } from './components/SearchBar/SearchBar'
-import { BookList } from './components/book/BookList'
+import { BookList } from './components/Book/BookList/BookList'
 
 function App() {
   return (

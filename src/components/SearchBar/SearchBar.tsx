@@ -1,36 +1,27 @@
-import { FC, KeyboardEvent, useEffect, useState } from 'react'
+import { FC, KeyboardEvent, useEffect } from 'react'
 import './SearchBar.sass'
 import { Input } from '../UI/Input/Input'
 import { Select } from '../UI/Select/Select'
-import { useAppDispatch } from '../../store/store'
+import { RootState, useAppDispatch, useAppSelector } from '../../store/store'
 import { getBooks } from '../../store/actions/bookActions'
+import { clearBooks, setCategory, setOrderBy, setQuery } from '../../store/slices/bookSlice'
 
 export const SearchBar: FC = () => {
   const dispatch = useAppDispatch()
-  const [searchInput, setSearchInput] = useState('')
-  const [category, setCategory] = useState<{ value: string }>({ value: 'all' })
-  const [orderBy, setOrderBy] = useState<{ value: string }>({ value: 'relevance' })
-  const categoryOptions = [
-    { value: 'all' },
-    { value: 'art' },
-    { value: 'biography' },
-    { value: 'computers' },
-    { value: 'history' },
-    { value: 'medical' },
-    { value: 'poetry' }
-  ]
-  const orderOptions = [{ value: 'relevance' }, { value: 'newest' }]
+  const { category, orderBy, orderOptions, categories, books, query } = useAppSelector((state: RootState) => state.book)
 
   const handleSearch = (event?: KeyboardEvent<HTMLInputElement>) => {
-    if (!searchInput) return
+    if (!query) return
     if ((event && event.key === 'Enter') || !event) {
-      dispatch(getBooks(searchInput, category.value, orderBy.value))
+      dispatch(clearBooks())
+      dispatch(getBooks())
     }
   }
 
   useEffect(() => {
-    if (searchInput) {
-      dispatch(getBooks(searchInput, category.value, orderBy.value))
+    if (query) {
+      dispatch(clearBooks())
+      dispatch(getBooks())
     }
   }, [category, orderBy, dispatch])
 
@@ -38,26 +29,26 @@ export const SearchBar: FC = () => {
   return (
     <div className="search-bar">
       <div className="content">
-        <h1 className="title">Search for books</h1>
-
+        <h1 className="title">Search for books {books.length}</h1>
         <Input className="w-100"
                endAdornment={<i className="bi bi-search" onClick={() => handleSearch()}/>}
                placeholder="Search..."
-               value={searchInput}
-               onChange={e => setSearchInput(e.target.value)}
+               value={query}
+               onChange={e => dispatch(setQuery(e.target.value))}
                onKeyDown={handleSearch}
         />
         <div className="select-inputs">
           <div className="select-input-wrap">
             <p className="select-input-label">Categories</p>
-            <Select value={category} setValue={setCategory} options={categoryOptions}/>
+            <Select value={{ value: category }} setValue={data => dispatch(setCategory(data.value))}
+                    options={categories}/>
           </div>
           <div className="select-input-wrap">
             <p className="select-input-label">Sorting by</p>
-            <Select value={orderBy} setValue={setOrderBy} options={orderOptions}/>
+            <Select value={{ value: orderBy }} setValue={data => dispatch(setOrderBy(data.value))}
+                    options={orderOptions}/>
           </div>
         </div>
-
       </div>
     </div>
   )

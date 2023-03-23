@@ -6,12 +6,13 @@ type GetBooksParams = { query: string, category: string, orderBy: string, startI
 export const getBooksQuery = async (data: GetBooksParams): Promise<{ books: Book[], totalItems: number }> => {
   const params: AxiosRequestConfig['params'] = {
     q: `${data.query}${data.category === 'all' ? '' : `+subject:${data.category}`}`,
-    orderBy: data.orderBy
+    orderBy: data.orderBy,
+    startIndex: data.startIndex
   }
   const response = await axios.get('volumes', { params })
-  console.log(response.data)
+  if (response.data.totalItems === 0) return { books: [], totalItems: 0 }
   const books: Book[] = response.data.items.map((item: any) => ({
-    id: item.id,
+    id: item.etag,
     title: item.volumeInfo.title,
     authors: item.volumeInfo.authors,
     categories: item.volumeInfo.categories,
